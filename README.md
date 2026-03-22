@@ -1,5 +1,4 @@
 # California Wildfire Severity Prediction
-### CS163 Final Project
 
 > Given weather and drought conditions at the time a fire is reported, how large is it likely to get?
 
