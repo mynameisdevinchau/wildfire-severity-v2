@@ -3,7 +3,5 @@ numpy
 ipykernel
 seaborn
 matplotlib
-scipy
-scikit-learn
-xgboost
 requests
+pygridmet
