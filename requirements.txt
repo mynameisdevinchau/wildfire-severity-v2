@@ -5,3 +5,11 @@ seaborn
 matplotlib
 requests
 pygridmet
+geopandas
+rasterio 
+shapely 
+pyproj 
+tqdm 
+py3dep 
+rioxarray 
+xarray
