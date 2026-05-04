@@ -1,0 +1,5 @@
+severity_tier,elevation,slope_degrees,aspect_degrees,northness,eastness
+Small,361.971,4.0,208.0,-0.139,-0.342
+Medium,393.131,4.0,205.0,-0.07,-0.225
+Large,571.132,5.0,197.0,-0.174,-0.182
+Extreme,638.145,8.0,203.0,-0.216,-0.199
