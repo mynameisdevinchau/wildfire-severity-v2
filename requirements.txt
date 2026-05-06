@@ -13,3 +13,5 @@ tqdm
 py3dep 
 rioxarray 
 xarray
+beautifulsoup4
+rasterio
