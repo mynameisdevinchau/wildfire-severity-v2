@@ -1,0 +1,41 @@
+{
+  "job": {
+    "jobId": "c84b6d78-ac4d-4fbc-8262-0d4dca2bf691",
+    "status": "Pending",
+    "job": {
+      "email": "chau.devin031602@gmail.com",
+      "layerList": "LF2024_FBFM40;LF2024_EVT;LF2024_EVC;LF2024_EVH;LF2024_CC;LF2024_FVT;LF2024_FVC",
+      "areaOfInterest": "-124.612017 32.307546 -114.026308 42.244830",
+      "outputProjection": "4326",
+      "resampleResolution": 500,
+      "editRule": "",
+      "editMask": "",
+      "ip": "99.130.254.126",
+      "includeLayerListXmlFile": false,
+      "aoiSize": 255413748,
+      "geoArea": "SW"
+    }
+  },
+  "job_id": "c84b6d78-ac4d-4fbc-8262-0d4dca2bf691",
+  "request_url": "https://lfps.usgs.gov/api/job/submit?Email=chau.devin031602%40gmail.com&Layer_List=LF2024_FBFM40%3BLF2024_EVT%3BLF2024_EVC%3BLF2024_EVH%3BLF2024_CC%3BLF2024_FVT%3BLF2024_FVC&Area_of_Interest=-124.612017+32.307546+-114.026308+42.244830&Output_Projection=4326&Resample_Resolution=500",
+  "request_params": {
+    "Email": "chau.devin031602@gmail.com",
+    "Layer_List": "LF2024_FBFM40;LF2024_EVT;LF2024_EVC;LF2024_EVH;LF2024_CC;LF2024_FVT;LF2024_FVC",
+    "Area_of_Interest": "-124.612017 32.307546 -114.026308 42.244830",
+    "Output_Projection": 4326,
+    "Resample_Resolution": 500
+  },
+  "layer_map": {
+    "fbfm40_code": "LF2024_FBFM40",
+    "evt_code": "LF2024_EVT",
+    "evc_code": "LF2024_EVC",
+    "evh_code": "LF2024_EVH",
+    "canopy_cover": "LF2024_CC",
+    "fvt_code": "LF2024_FVT",
+    "fvc_code": "LF2024_FVC"
+  },
+  "layer_list": "LF2024_FBFM40;LF2024_EVT;LF2024_EVC;LF2024_EVH;LF2024_CC;LF2024_FVT;LF2024_FVC",
+  "aoi_wsen": "-124.612017 32.307546 -114.026308 42.244830",
+  "resolution_m": 500,
+  "output_projection": 4326
+}

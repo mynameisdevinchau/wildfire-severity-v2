@@ -1,0 +1,96 @@
+{
+  "jobId": "c84b6d78-ac4d-4fbc-8262-0d4dca2bf691",
+  "queuePosition": -1,
+  "status": "Succeeded",
+  "messages": [
+    {
+      "type": "esriJobMessageTypeInformative",
+      "description": "Start Time: Friday, May 8, 2026 4:39:54 AM"
+    },
+    {
+      "type": "esriJobMessageTypeInformative",
+      "description": "AOI: -124.612017 32.307546 -114.026308 42.244830"
+    },
+    {
+      "type": "esriJobMessageTypeInformative",
+      "description": "Validate AOI coordinates."
+    },
+    {
+      "type": "esriJobMessageTypeInformative",
+      "description": "Validate AOI coordinates completed."
+    },
+    {
+      "type": "esriJobMessageTypeInformative",
+      "description": "Determine region for AOI"
+    },
+    {
+      "type": "esriJobMessageTypeInformative",
+      "description": "region: CONUS"
+    },
+    {
+      "type": "esriJobMessageTypeInformative",
+      "description": "Determine region completed."
+    },
+    {
+      "type": "esriJobMessageTypeInformative",
+      "description": "LF2024_FBFM40_CONUS"
+    },
+    {
+      "type": "esriJobMessageTypeInformative",
+      "description": "LF2024_EVT_CONUS"
+    },
+    {
+      "type": "esriJobMessageTypeInformative",
+      "description": "LF2024_EVC_CONUS"
+    },
+    {
+      "type": "esriJobMessageTypeInformative",
+      "description": "LF2024_EVH_CONUS"
+    },
+    {
+      "type": "esriJobMessageTypeInformative",
+      "description": "LF2024_CC_CONUS"
+    },
+    {
+      "type": "esriJobMessageTypeInformative",
+      "description": "LF2024_FVT_CONUS"
+    },
+    {
+      "type": "esriJobMessageTypeInformative",
+      "description": "LF2024_FVC_CONUS"
+    },
+    {
+      "type": "esriJobMessageTypeInformative",
+      "description": "Start creating geotif"
+    },
+    {
+      "type": "esriJobMessageTypeInformative",
+      "description": "Start resample of geotif"
+    },
+    {
+      "type": "esriJobMessageTypeInformative",
+      "description": "Finished resample of geotif"
+    },
+    {
+      "type": "esriJobMessageTypeInformative",
+      "description": "Finished creating geotif"
+    },
+    {
+      "type": "esriJobMessageTypeInformative",
+      "description": "Start zipping of files"
+    },
+    {
+      "type": "esriJobMessageTypeInformative",
+      "description": "All files zipped successfully."
+    },
+    {
+      "type": "esriJobMessageTypeInformative",
+      "description": "Job Finished"
+    },
+    {
+      "type": "esriJobMessageTypeInformative",
+      "description": "Succeeded at Friday, May 8, 2026 4:41:01 AM (Elapsed Time: 1 minutes 6 seconds)"
+    }
+  ],
+  "outputFile": "https://lfps.usgs.gov/arcgis/rest/directories/arcgisjobs/landfireproductservice_gpserver/j57919e6b53e142f78e7ae801837ec006/scratch/j57919e6b53e142f78e7ae801837ec006.zip"
+}

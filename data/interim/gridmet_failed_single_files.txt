@@ -1,0 +1,8 @@
+C:\Users\chaud\Desktop\repositories\wildfire-severity-v2\data\interim\gridmet_remaining_single_rows\remaining_row_0000_fire_01258.csv
+C:\Users\chaud\Desktop\repositories\wildfire-severity-v2\data\interim\gridmet_remaining_single_rows\remaining_row_0288_fire_01546.csv
+C:\Users\chaud\Desktop\repositories\wildfire-severity-v2\data\interim\gridmet_remaining_single_rows\remaining_row_0296_fire_01554.csv
+C:\Users\chaud\Desktop\repositories\wildfire-severity-v2\data\interim\gridmet_remaining_single_rows\remaining_row_0302_fire_01560.csv
+C:\Users\chaud\Desktop\repositories\wildfire-severity-v2\data\interim\gridmet_remaining_single_rows\remaining_row_0000_fire_01258.csv
+C:\Users\chaud\Desktop\repositories\wildfire-severity-v2\data\interim\gridmet_remaining_single_rows\remaining_row_0288_fire_01546.csv
+C:\Users\chaud\Desktop\repositories\wildfire-severity-v2\data\interim\gridmet_remaining_single_rows\remaining_row_0296_fire_01554.csv
+C:\Users\chaud\Desktop\repositories\wildfire-severity-v2\data\interim\gridmet_remaining_single_rows\remaining_row_0302_fire_01560.csv
