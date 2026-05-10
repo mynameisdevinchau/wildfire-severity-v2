@@ -1,0 +1,5 @@
+severity_tier,is_abnormally_dry_D0_plus,is_drought_D1_plus,is_severe_D2_plus,is_extreme_D3_plus
+Small,0.444,0.257,0.18,0.091
+Medium,0.511,0.341,0.251,0.141
+Large,0.52,0.315,0.215,0.145
+Extreme,0.536,0.398,0.265,0.193

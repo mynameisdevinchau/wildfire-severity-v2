@@ -1,0 +1,53 @@
+task,model,feature_set,class,precision,recall,f1,support
+multiclass,Majority baseline,none,Small,0.6523255813953488,1.0,0.7895847994370162,561
+multiclass,Majority baseline,none,Medium,0.0,0.0,0.0,210
+multiclass,Majority baseline,none,Large,0.0,0.0,0.0,47
+multiclass,Majority baseline,none,Extreme,0.0,0.0,0.0,42
+multiclass,Logistic Regression,gridmet_terrain,Small,0.7063492063492064,0.3172905525846702,0.43788437884378845,561
+multiclass,Logistic Regression,gridmet_terrain,Medium,0.2567049808429119,0.319047619047619,0.28450106157112526,210
+multiclass,Logistic Regression,gridmet_terrain,Large,0.05235602094240838,0.2127659574468085,0.08403361344537816,47
+multiclass,Logistic Regression,gridmet_terrain,Extreme,0.11538461538461539,0.42857142857142855,0.18181818181818182,42
+multiclass,Random Forest,gridmet_terrain,Small,0.7251184834123223,0.5454545454545454,0.6225839267548321,561
+multiclass,Random Forest,gridmet_terrain,Medium,0.27835051546391754,0.38571428571428573,0.32335329341317365,210
+multiclass,Random Forest,gridmet_terrain,Large,0.08860759493670886,0.14893617021276595,0.1111111111111111,47
+multiclass,Random Forest,gridmet_terrain,Extreme,0.19117647058823528,0.30952380952380953,0.23636363636363636,42
+multiclass,Logistic Regression,gridmet_terrain_drought,Small,0.7148936170212766,0.2994652406417112,0.4221105527638191,561
+multiclass,Logistic Regression,gridmet_terrain_drought,Medium,0.2534722222222222,0.3476190476190476,0.2931726907630522,210
+multiclass,Logistic Regression,gridmet_terrain_drought,Large,0.046948356807511735,0.2127659574468085,0.07692307692307693,47
+multiclass,Logistic Regression,gridmet_terrain_drought,Extreme,0.11290322580645161,0.3333333333333333,0.1686746987951807,42
+multiclass,Random Forest,gridmet_terrain_drought,Small,0.7274881516587678,0.5472370766488414,0.624618514750763,561
+multiclass,Random Forest,gridmet_terrain_drought,Medium,0.2831541218637993,0.3761904761904762,0.3231083844580777,210
+multiclass,Random Forest,gridmet_terrain_drought,Large,0.10869565217391304,0.2127659574468085,0.14388489208633093,47
+multiclass,Random Forest,gridmet_terrain_drought,Extreme,0.19402985074626866,0.30952380952380953,0.23853211009174313,42
+multiclass,Logistic Regression,gridmet_terrain_drought_landfire,Small,0.7318007662835249,0.3404634581105169,0.46472019464720193,561
+multiclass,Logistic Regression,gridmet_terrain_drought_landfire,Medium,0.26277372262773724,0.34285714285714286,0.2975206611570248,210
+multiclass,Logistic Regression,gridmet_terrain_drought_landfire,Large,0.05741626794258373,0.2553191489361702,0.09375,47
+multiclass,Logistic Regression,gridmet_terrain_drought_landfire,Extreme,0.1206896551724138,0.3333333333333333,0.17721518987341772,42
+multiclass,Random Forest,gridmet_terrain_drought_landfire,Small,0.7331838565022422,0.5828877005347594,0.6494538232373386,561
+multiclass,Random Forest,gridmet_terrain_drought_landfire,Medium,0.28776978417266186,0.38095238095238093,0.32786885245901637,210
+multiclass,Random Forest,gridmet_terrain_drought_landfire,Large,0.11538461538461539,0.19148936170212766,0.144,47
+multiclass,Random Forest,gridmet_terrain_drought_landfire,Extreme,0.1896551724137931,0.2619047619047619,0.22,42
+multiclass,Logistic Regression,gridmet_terrain_drought_landfire_expanded_codes,Small,0.7090909090909091,0.34759358288770054,0.4665071770334928,561
+multiclass,Logistic Regression,gridmet_terrain_drought_landfire_expanded_codes,Medium,0.250814332247557,0.36666666666666664,0.2978723404255319,210
+multiclass,Logistic Regression,gridmet_terrain_drought_landfire_expanded_codes,Large,0.06289308176100629,0.2127659574468085,0.0970873786407767,47
+multiclass,Logistic Regression,gridmet_terrain_drought_landfire_expanded_codes,Extreme,0.13445378151260504,0.38095238095238093,0.19875776397515527,42
+multiclass,Random Forest,gridmet_terrain_drought_landfire_expanded_codes,Small,0.7232558139534884,0.5543672014260249,0.627648839556004,561
+multiclass,Random Forest,gridmet_terrain_drought_landfire_expanded_codes,Medium,0.2791666666666667,0.319047619047619,0.29777777777777775,210
+multiclass,Random Forest,gridmet_terrain_drought_landfire_expanded_codes,Large,0.07476635514018691,0.1702127659574468,0.1038961038961039,47
+multiclass,Random Forest,gridmet_terrain_drought_landfire_expanded_codes,Extreme,0.1686746987951807,0.3333333333333333,0.224,42
+multiclass,XGBoost,gridmet_terrain,Small,0.7426273458445041,0.49376114081996436,0.5931477516059958,561
+multiclass,XGBoost,gridmet_terrain,Medium,0.25461254612546125,0.32857142857142857,0.2869022869022869,210
+multiclass,XGBoost,gridmet_terrain,Large,0.07352941176470588,0.2127659574468085,0.1092896174863388,47
+multiclass,XGBoost,gridmet_terrain,Extreme,0.1375,0.2619047619047619,0.18032786885245902,42
+multiclass,XGBoost,gridmet_terrain_drought,Small,0.7338709677419355,0.48663101604278075,0.5852090032154341,561
+multiclass,XGBoost,gridmet_terrain_drought,Medium,0.26545454545454544,0.3476190476190476,0.30103092783505153,210
+multiclass,XGBoost,gridmet_terrain_drought,Large,0.08759124087591241,0.2553191489361702,0.13043478260869565,47
+multiclass,XGBoost,gridmet_terrain_drought,Extreme,0.13157894736842105,0.23809523809523808,0.1694915254237288,42
+multiclass,XGBoost,gridmet_terrain_drought_landfire,Small,0.7248677248677249,0.48841354723707664,0.5835995740149095,561
+multiclass,XGBoost,gridmet_terrain_drought_landfire,Medium,0.2631578947368421,0.35714285714285715,0.30303030303030304,210
+multiclass,XGBoost,gridmet_terrain_drought_landfire,Large,0.072,0.19148936170212766,0.10465116279069768,47
+multiclass,XGBoost,gridmet_terrain_drought_landfire,Extreme,0.1527777777777778,0.2619047619047619,0.19298245614035087,42
+multiclass,XGBoost,gridmet_terrain_drought_landfire_expanded_codes,Small,0.75,0.49732620320855614,0.5980707395498392,561
+multiclass,XGBoost,gridmet_terrain_drought_landfire_expanded_codes,Medium,0.27472527472527475,0.35714285714285715,0.3105590062111801,210
+multiclass,XGBoost,gridmet_terrain_drought_landfire_expanded_codes,Large,0.06666666666666667,0.19148936170212766,0.0989010989010989,47
+multiclass,XGBoost,gridmet_terrain_drought_landfire_expanded_codes,Extreme,0.15,0.2857142857142857,0.19672131147540983,42

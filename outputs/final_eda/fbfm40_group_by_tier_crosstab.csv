@@ -1,0 +1,5 @@
+severity_tier,grass,grass_shrub,nonburnable_or_other,shrub,timber_litter,timber_understory
+Small,0.288,0.245,0.211,0.125,0.059,0.072
+Medium,0.339,0.254,0.178,0.149,0.038,0.043
+Large,0.335,0.24,0.095,0.16,0.08,0.09
+Extreme,0.253,0.217,0.108,0.181,0.114,0.127

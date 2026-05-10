@@ -1,0 +1,27 @@
+task,model,feature_set,class,precision,recall,f1,support
+binary_high_severity,Majority baseline,none,Low,0.8965116279069767,1.0,0.9454322501532803,771
+binary_high_severity,Majority baseline,none,High,0.0,0.0,0.0,89
+binary_high_severity,Logistic Regression,gridmet_terrain,Low,0.9380863039399625,0.648508430609598,0.7668711656441718,771
+binary_high_severity,Logistic Regression,gridmet_terrain,High,0.1712538226299694,0.6292134831460674,0.2692307692307692,89
+binary_high_severity,Random Forest,gridmet_terrain,Low,0.9193341869398207,0.9312581063553826,0.9252577319587629,771
+binary_high_severity,Random Forest,gridmet_terrain,High,0.3291139240506329,0.29213483146067415,0.30952380952380953,89
+binary_high_severity,Logistic Regression,gridmet_terrain_drought,Low,0.9406307977736549,0.6575875486381323,0.7740458015267175,771
+binary_high_severity,Logistic Regression,gridmet_terrain_drought,High,0.17757009345794392,0.6404494382022472,0.2780487804878049,89
+binary_high_severity,Random Forest,gridmet_terrain_drought,Low,0.9213917525773195,0.9273670557717251,0.9243697478991597,771
+binary_high_severity,Random Forest,gridmet_terrain_drought,High,0.3333333333333333,0.3146067415730337,0.3236994219653179,89
+binary_high_severity,Logistic Regression,gridmet_terrain_drought_landfire,Low,0.9385474860335196,0.6536964980544747,0.7706422018348624,771
+binary_high_severity,Logistic Regression,gridmet_terrain_drought_landfire,High,0.17337461300309598,0.6292134831460674,0.27184466019417475,89
+binary_high_severity,Random Forest,gridmet_terrain_drought_landfire,Low,0.9193341869398207,0.9312581063553826,0.9252577319587629,771
+binary_high_severity,Random Forest,gridmet_terrain_drought_landfire,High,0.3291139240506329,0.29213483146067415,0.30952380952380953,89
+binary_high_severity,Logistic Regression,gridmet_terrain_drought_landfire_expanded_codes,Low,0.9215358931552587,0.7159533073929961,0.8058394160583942,771
+binary_high_severity,Logistic Regression,gridmet_terrain_drought_landfire_expanded_codes,High,0.16091954022988506,0.47191011235955055,0.24,89
+binary_high_severity,Random Forest,gridmet_terrain_drought_landfire_expanded_codes,Low,0.9299719887955182,0.8612191958495461,0.8942760942760942,771
+binary_high_severity,Random Forest,gridmet_terrain_drought_landfire_expanded_codes,High,0.2671232876712329,0.43820224719101125,0.33191489361702126,89
+binary_high_severity,XGBoost,gridmet_terrain,Low,0.9340490797546013,0.7898832684824902,0.8559381588193956,771
+binary_high_severity,XGBoost,gridmet_terrain,High,0.22115384615384615,0.5168539325842697,0.30976430976430974,89
+binary_high_severity,XGBoost,gridmet_terrain_drought,Low,0.9337442218798151,0.7859922178988327,0.8535211267605634,771
+binary_high_severity,XGBoost,gridmet_terrain_drought,High,0.21800947867298578,0.5168539325842697,0.30666666666666664,89
+binary_high_severity,XGBoost,gridmet_terrain_drought_landfire,Low,0.9335302806499262,0.8197146562905318,0.8729281767955801,771
+binary_high_severity,XGBoost,gridmet_terrain_drought_landfire,High,0.24043715846994534,0.4943820224719101,0.3235294117647059,89
+binary_high_severity,XGBoost,gridmet_terrain_drought_landfire_expanded_codes,Low,0.9376899696048632,0.8002594033722439,0.8635409377186843,771
+binary_high_severity,XGBoost,gridmet_terrain_drought_landfire_expanded_codes,High,0.2376237623762376,0.5393258426966292,0.32989690721649484,89

@@ -1,0 +1,5 @@
+severity_tier,vpd_kPa_7d_mean,erc_7d_mean,bi_7d_mean,rmin_pct_7d_mean,fm100_pct_7d_mean,fm1000_pct_30d_mean,elevation,slope_degrees,northness,eastness,usdm_intensity,is_drought_D1_plus,is_severe_D2_plus,canopy_cover,has_canopy_cover,evc_code,evh_code,fvc_code
+Small,1.967,64.286,49.857,21.957,8.671,10.493,361.971,4.0,-0.139,-0.342,0.0,0.0,0.0,0.0,0.0,222.0,208.0,111.0
+Medium,2.079,68.429,51.857,20.393,8.079,9.926,393.131,4.0,-0.07,-0.225,0.0,0.0,0.0,0.0,0.0,228.0,214.0,112.0
+Large,2.036,71.214,53.214,18.321,7.557,9.48,571.132,5.0,-0.174,-0.182,0.0,0.0,0.0,0.0,0.0,227.0,212.5,112.0
+Extreme,2.183,75.0,53.571,17.114,6.886,8.742,638.145,8.0,-0.216,-0.199,0.0,0.0,0.0,0.0,0.0,229.0,212.0,111.0

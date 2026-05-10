@@ -1,0 +1,3 @@
+split_candidate,vpd_kPa_7d_mean,erc_7d_mean,bi_7d_mean,fm100_pct_7d_mean,elevation,slope_degrees,usdm_intensity,canopy_cover,has_canopy_cover
+test_2022_2024,2.204,70.0,53.286,7.707,405.169,4.0,0.0,0.0,0.0
+train_2016_2021,1.977,65.714,50.143,8.386,402.282,4.0,0.0,0.0,0.0

@@ -1,0 +1,5 @@
+severity_tier,evc_code,evh_code,fvc_code,canopy_cover,has_canopy_cover
+Small,222.0,208.0,111.0,0.0,0.0
+Medium,228.0,214.0,112.0,0.0,0.0
+Large,227.0,212.5,112.0,0.0,0.0
+Extreme,229.0,212.0,111.0,0.0,0.0

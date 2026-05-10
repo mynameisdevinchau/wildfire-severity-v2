@@ -1,0 +1,8 @@
+feature_1,feature_2,correlation
+evc_code,evh_code,0.9957221291384143
+erc_7d_mean,fm100_pct_7d_mean,-0.9448051792801453
+canopy_cover,has_canopy_cover,0.9330215607434126
+erc_7d_mean,fm1000_pct_30d_mean,-0.8998506028426777
+tmmx_F_7d_mean,vpd_kPa_7d_mean,0.8951651426245454
+evc_code,fvc_code,0.8505362262239727
+erc_7d_mean,bi_7d_mean,0.8502628101501143

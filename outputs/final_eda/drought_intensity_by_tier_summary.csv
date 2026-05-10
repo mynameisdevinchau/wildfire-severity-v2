@@ -1,0 +1,5 @@
+severity_tier,count,mean,median,min,max
+Small,1305,0.559,0.0,0.0,4.0
+Medium,716,0.797,0.0,0.0,4.0
+Large,200,0.755,0.0,0.0,4.0
+Extreme,166,0.922,0.0,0.0,4.0
