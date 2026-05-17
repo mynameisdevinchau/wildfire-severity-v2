@@ -1,85 +1,50 @@
 # California Wildfire Severity Prediction
 
-A point-based geospatial machine learning project for modeling California wildfire severity using pre-fire weather, terrain, drought, and vegetation/fuel conditions.
+A point-based geospatial machine learning project for predicting California wildfire severity using pre-fire environmental conditions, terrain, drought context, and vegetation/fuel features.
 
-> Inspired by recent California wildfire events and my background in fire technology, this project explores how data science can support wildfire risk analysis and preparedness. The final model is not intended for operational deployment, but it demonstrates a defensible environmental feature pipeline and evaluates whether public geospatial datasets contain meaningful signal for high-severity wildfire triage.
+This project began as a county-level wildfire analysis, but was rebuilt into a more defensible point-based pipeline. Instead of assigning broad county-level values to each fire, the final workflow samples weather, terrain, drought, and fuel/vegetation features at each wildfire's ignition coordinates.
 
----
+## Project Overview
 
-## Project Summary
-
-This project predicts wildfire severity for confirmed California wildfire incidents. It began as a coarse county-level analysis, but was rebuilt into a point-based geospatial pipeline that samples environmental features at each fire's ignition coordinates.
+The goal of this project is to predict wildfire severity from conditions available before or near the start of a fire.
 
 The final dataset combines:
 
-- **CAL FIRE incident records**
-- **gridMET weather and fire-danger variables**
-- **USGS 3DEP terrain features**
-- **U.S. Drought Monitor drought intensity**
-- **LANDFIRE vegetation and fuel layers**
+- CAL FIRE incident records
+- gridMET daily weather and fire-danger variables
+- USGS 3DEP terrain rasters
+- U.S. Drought Monitor drought intensity
+- LANDFIRE vegetation and fuel layers
 
-The final modeling table contains:
-
-```text
-2,397 California wildfire incidents
-197 total columns after enrichment
-No duplicate fire IDs
-Low missingness across core modeling features
-```
-
-Final enriched table:
+The project uses a time-based validation setup:
 
 ```text
-data/processed/calfire_with_gridmet_terrain_drought_veg.csv
+Train: 2016-2021
+Test:  2022-2024
 ```
 
----
+This split is intentionally stricter than a random split because it evaluates whether the model can generalize to future fire seasons.
 
-## Research Question
+## Motivation
 
-Given the location and pre-fire environmental conditions for a confirmed wildfire, can we estimate whether the fire is likely to become high-severity?
+Wildfire size is extremely difficult to predict from environmental data alone because final acreage depends on many factors that are not fully captured in public pre-fire datasets, including suppression response, ignition cause, fuel continuity, wind shifts, road access, and human development patterns.
 
-The project evaluates two related tasks:
+Because of this, the project does not frame the task as exact acreage prediction. Instead, it reframes wildfire severity as an imbalanced classification problem using NWCG-derived fire-size tiers.
 
-1. **Multiclass severity prediction**
-   - Small
-   - Medium
-   - Large
-   - Extreme
+## Target Definition
 
-2. **Binary high-severity triage**
-   - Low: Small or Medium
-   - High: Large or Extreme
-
-The binary task is the more practical framing because identifying potentially high-severity fires is more useful than perfectly predicting every fire-size tier.
-
----
-
-## Why Not Predict Raw Acres Directly?
-
-Final acres burned is extremely right-skewed. Most fires burn relatively small areas, while a small number of massive fires dominate the distribution.
-
-Summary from the final EDA:
+The original continuous target, `AcresBurned`, was highly right-skewed:
 
 ```text
 Median acres burned:        80
-Mean acres burned:       4,332
+Mean acres burned:       4,333
 95th percentile:         8,806
 99th percentile:        83,844
 Maximum:             1,032,648
 ```
 
-Because of this skew, raw-acreage regression is unstable and difficult to interpret. The project uses `log_acres` for EDA, but the main target is a severity-tier classification label.
+Because raw acreage is unstable and heavily affected by outliers, the project uses severity tiers as the primary modeling target:
 
-<<<<<<< HEAD
-=======
----
-
-## Target Definition
-
-Severity tiers are derived from NWCG-style fire-size classes and collapsed into four modeling groups.
-
->>>>>>> 986115cd33f67ead2ce7d5a4c6207b973fe79719
 | Severity Tier | Acreage Range |
 |---|---:|
 | Small | < 100 acres |
@@ -89,46 +54,32 @@ Severity tiers are derived from NWCG-style fire-size classes and collapsed into 
 
 Final target distribution:
 
-<<<<<<< HEAD
 | Class | Count |
-=======
-| Severity Tier | Count |
->>>>>>> 986115cd33f67ead2ce7d5a4c6207b973fe79719
 |---|---:|
 | Small | 1,311 |
 | Medium | 720 |
 | Large | 200 |
 | Extreme | 166 |
 
-Because the target is imbalanced, the project reports:
-
-- Balanced accuracy
-- Macro F1
-- Per-class recall
-- Large/Extreme recall
-- ROC-AUC for the binary task
-
-Raw accuracy is not used as the main metric because a model can score well by predicting only the majority class.
-
----
+This class imbalance is why the project emphasizes balanced accuracy, macro F1, per-class recall, and Large/Extreme recall instead of raw accuracy.
 
 ## Data Sources
 
 ### CAL FIRE Incidents
 
-CAL FIRE incident records form the base wildfire dataset. Each record includes the fire name, start date, location, and final acres burned.
-
-Key fields used:
+CAL FIRE incident records were used as the base wildfire dataset. Each incident includes fields such as:
 
 - Fire name
 - Start date
-- Latitude
-- Longitude
+- Latitude and longitude
 - Acres burned
+- Administrative metadata
+
+The project uses each fire's latitude and longitude as the central point for feature sampling.
 
 ### gridMET Weather and Fire-Danger Data
 
-gridMET variables were sampled at each wildfire ignition coordinate using `pygridMET`. For each fire, the pipeline computes pre-fire weather and fire-danger aggregates over 7-day, 14-day, and 30-day windows.
+gridMET daily climate and fire-danger variables were sampled at each fire's ignition coordinates. For each incident, pre-fire windows were computed over 7-day, 14-day, and 30-day periods.
 
 Key variables include:
 
@@ -143,9 +94,9 @@ Key variables include:
 - 100-hour fuel moisture
 - 1000-hour fuel moisture
 
-### USGS 3DEP Terrain
+### USGS 3DEP Terrain Features
 
-USGS 3DEP terrain rasters were sampled at each fire point using `py3DEP` and `rasterio`.
+Terrain features were sampled from USGS 3DEP-derived rasters at each fire point.
 
 Features include:
 
@@ -155,11 +106,11 @@ Features include:
 - Northness
 - Eastness
 
-Aspect was decomposed into northness and eastness because aspect is circular and should not be treated as a simple linear variable.
+Aspect was transformed into northness and eastness to avoid treating circular direction as a linear variable.
 
-### U.S. Drought Monitor
+### U.S. Drought Monitor Features
 
-Weekly U.S. Drought Monitor GeoTIFFs were downloaded and sampled at each fire point. For each fire, the pipeline selected the most recent drought map available before the fire start date to avoid temporal leakage.
+Weekly U.S. Drought Monitor GeoTIFFs were downloaded and sampled at each wildfire point. For each incident, the pipeline selected the latest drought map available before the fire start date to avoid temporal leakage.
 
 Features include:
 
@@ -171,7 +122,7 @@ Features include:
 - D2+ severe drought indicator
 - D3+ extreme drought indicator
 
-### LANDFIRE Vegetation and Fuels
+### LANDFIRE Vegetation and Fuel Features
 
 LANDFIRE layers were sampled at each fire point using the LANDFIRE Product Service.
 
@@ -186,46 +137,45 @@ Features include:
 - Fuel vegetation type
 - Fuel vegetation cover
 
-Raw vegetation codes are retained for EDA, while broader fuel groups are used for more interpretable modeling.
-
----
+Raw high-cardinality vegetation codes are retained for EDA, while broader fuel groups are used for more interpretable modeling.
 
 ## Pipeline
 
-The final workflow follows a structured `raw/interim/processed` data architecture.
+The final pipeline follows a structured `raw/interim/processed` workflow:
 
 ```text
 CAL FIRE incidents
         |
         v
-Clean and standardize fire records
+Clean fire records and assign gridmet_id
         |
         v
-Assign each fire a stable gridmet_id
-        |
-        v
-Sample gridMET daily weather/fire-danger data at ignition coordinates
+Sample gridMET weather/fire-danger variables at ignition points
         |
         v
 Aggregate 7-day, 14-day, and 30-day pre-fire windows
         |
         v
-Download and sample USGS 3DEP terrain rasters
+Sample USGS 3DEP terrain rasters
         |
         v
-Download and sample weekly USDM drought rasters
+Sample weekly USDM drought rasters
         |
         v
-Request and sample LANDFIRE vegetation/fuel rasters
+Sample LANDFIRE fuel and vegetation rasters
         |
         v
-Build final enriched modeling table
+Final enriched modeling table
         |
         v
-Run final EDA and modeling
+EDA and modeling
 ```
 
----
+Final modeling table:
+
+```text
+data/processed/calfire_with_gridmet_terrain_drought_veg.csv
+```
 
 ## Repository Structure
 
@@ -255,113 +205,73 @@ wildfire-severity-v2/
 └── README.md
 ```
 
----
-
 ## Exploratory Data Analysis
 
-The final EDA supports the project framing and modeling decisions.
+The final EDA found several useful patterns:
 
-Key findings:
-
-- Final acres burned is highly right-skewed, making exact acreage prediction unstable.
-- The severity target is imbalanced, with Small fires forming the largest class.
+- Acres burned is highly right-skewed, supporting severity-tier classification instead of raw acreage regression.
 - Larger fires generally occur under drier and more fire-dangerous conditions.
-- Higher-severity fires tend to show higher VPD, higher ERC, higher Burning Index, lower relative humidity, and lower fuel moisture.
-- Larger fires tend to occur at higher elevations and steeper slopes.
-- Extreme fires show higher average USDM drought intensity than Small fires.
-- LANDFIRE fuel groups differ across severity tiers, with larger fires showing greater representation in shrub and timber-related fuel groups.
-- Several fire-danger features are highly correlated, especially ERC, Burning Index, fuel moisture, temperature, and VPD.
-- The 2016-2021 train period and 2022-2024 test period show distribution shift, so model results must be interpreted carefully.
+- Higher severity tiers tend to show higher VPD, ERC, and Burning Index.
+- Higher severity tiers tend to show lower relative humidity and lower fuel moisture.
+- Large and Extreme fires tend to occur at higher median elevation and steeper slopes.
+- Extreme fires have higher average USDM drought intensity than Small fires.
+- LANDFIRE fuel groups differ across severity tiers, with larger fires showing higher representation in shrub and timber-related fuel groups.
+- Several fire-danger variables are highly correlated, especially ERC, Burning Index, fuel moisture, temperature, and VPD.
+- The 2016-2021 train and 2022-2024 test split shows distribution shift, especially because the test period contains a higher proportion of Small fires.
 
-Final EDA notebook:
+## Modeling
 
-```text
-notebooks/08_final_eda.ipynb
-```
+Two modeling tasks were evaluated.
 
----
+### Task 1: Multiclass Severity Prediction
 
-## Modeling Setup
-
-The project uses a time-based split:
+Classes:
 
 ```text
-Train: 2016-2021
-Test:  2022-2024
-```
-
-This is more realistic than a random split because it tests generalization to future fire seasons.
-
-Models evaluated:
-
-- Majority-class baseline
-- Logistic Regression
-- Random Forest
-- XGBoost
-
-Feature groups compared:
-
-1. `gridMET + terrain`
-2. `gridMET + terrain + drought`
-3. `gridMET + terrain + drought + LANDFIRE`
-4. Expanded LANDFIRE code version
-
-Final modeling notebook:
-
-```text
-notebooks/09_final_modeling.ipynb
-```
-
----
-
-## Results
-
-### Multiclass Severity Prediction
-
-Task:
-
-```text
-Small vs Medium vs Large vs Extreme
+Small, Medium, Large, Extreme
 ```
 
 Best multiclass model:
 
-| Model | Features | Accuracy | Balanced Accuracy | Macro F1 | Large/Extreme Recall |
-|---|---|---:|---:|---:|---:|
-| Random Forest | gridMET + terrain + drought + LANDFIRE | 0.4965 | 0.3543 | 0.3353 | 0.4045 |
-
-The majority baseline achieved higher raw accuracy by predicting the most common class, but it had:
-
 ```text
-Large/Extreme recall: 0.0000
-Macro F1: 0.1974
-Balanced accuracy: 0.2500
+Model: Random Forest
+Features: gridMET + terrain + drought + LANDFIRE
+Accuracy: 0.4965
+Balanced accuracy: 0.3543
+Macro F1: 0.3353
+Large/Extreme recall: 0.4045
 ```
 
-This confirms that raw accuracy is misleading for this imbalanced task.
+The majority baseline achieved higher raw accuracy because it predicted only the most common class, but it had 0% Large/Extreme recall and much lower macro F1. This confirms that raw accuracy is misleading for this imbalanced task.
 
-### Binary High-Severity Triage
+### Task 2: Binary High-Severity Triage
 
-Task:
+Classes:
 
 ```text
-Low  = Small or Medium
-High = Large or Extreme
+Low:  Small or Medium
+High: Large or Extreme
 ```
 
 Best binary model:
 
-| Model | Features | Accuracy | Balanced Accuracy | Macro F1 | High Recall | High Precision | ROC-AUC | Average Precision |
-|---|---|---:|---:|---:|---:|---:|---:|---:|
-| Random Forest | gridMET + terrain + drought | 0.8640 | 0.6210 | 0.6240 | 0.3146 | 0.3333 | 0.6942 | 0.2732 |
+```text
+Model: Random Forest
+Features: gridMET + terrain + drought
+Accuracy: 0.8640
+Balanced accuracy: 0.6210
+Macro F1: 0.6240
+High recall: 0.3146
+High precision: 0.3333
+ROC-AUC: 0.6942
+Average precision: 0.2732
+```
 
-The binary task is the stronger practical framing. It evaluates whether the model can flag potentially high-severity fires rather than perfectly separating all four size classes.
+The binary task provides a more practical risk-triage framing than exact four-class prediction.
 
----
+### Threshold Tuning
 
-## Threshold Tuning
-
-At the default 0.50 threshold, the binary Random Forest is conservative:
+At the default 0.50 threshold, the binary model is conservative. Lowering the high-severity threshold improves recall:
 
 | Threshold | High Recall | High Precision | Macro F1 |
 |---:|---:|---:|---:|
@@ -370,29 +280,24 @@ At the default 0.50 threshold, the binary Random Forest is conservative:
 | 0.45 | 0.3933 | 0.2536 | 0.6016 |
 | 0.50 | 0.3146 | 0.3333 | 0.6240 |
 
-For a triage use case, a threshold near `0.40` may be more useful because it catches nearly half of high-severity fires, though it increases false positives.
-
----
+A 0.40 threshold may be more useful for triage because it catches nearly half of high-severity fires while maintaining better precision than more aggressive thresholds.
 
 ## Interpretation
 
-The final results suggest that point-based weather, terrain, drought, and fuel variables contain meaningful wildfire severity signal. However, exact four-tier prediction remains difficult because final fire size depends on many factors that are not fully captured in pre-fire environmental data.
+The final models show that environmental and geospatial features contain meaningful wildfire severity signal, but exact severity prediction remains difficult.
 
-The most defensible interpretation is:
+The strongest interpretation is not that the model is operationally ready. Instead, the project demonstrates a defensible geospatial ML pipeline that:
 
-```text
-This project is a point-based geospatial wildfire severity and high-severity triage pipeline, not an operational wildfire prediction system.
-```
-
-The strongest model story is not that the model can perfectly predict final acres burned. Instead, the project demonstrates that a more spatially precise feature pipeline can identify useful environmental risk signals and support a realistic high-severity triage framing.
-
----
+- Samples point-based environmental features instead of relying on county-level averages
+- Avoids post-fire leakage
+- Uses realistic time-based validation
+- Handles target skew and class imbalance explicitly
+- Evaluates both multiclass severity prediction and binary high-severity triage
+- Provides an extensible foundation for future wildfire risk modeling
 
 ## Limitations
 
-This project only models confirmed wildfire incidents. It does not predict whether a fire will ignite.
-
-Important missing predictors include:
+This project does not include every factor that determines final fire size. Important missing predictors include:
 
 - Ignition cause
 - Suppression response
@@ -401,31 +306,26 @@ Important missing predictors include:
 - Fuel continuity beyond the ignition point
 - Road access
 - WUI and population exposure
-- Extreme wind direction and wind gust events
+- Daily wind direction and extreme wind events
 - Lightning and human ignition context
-- Real-time resource availability
+- Fire weather warnings or red flag events
 
-The model should not be used for operational wildfire decision-making.
+The model should not be used for operational wildfire decision-making. It is a data science project focused on environmental signal discovery and severity-risk modeling.
 
----
+## Future Improvements
 
-## Future Work
+Potential next steps:
 
-Potential improvements:
-
-- Add ignition cause.
-- Add WUI and population exposure.
-- Add road access, distance to cities, and distance to fire stations.
-- Add buffer-based fuel continuity metrics instead of only point-sampled fuel values.
-- Use fire perimeter data to summarize vegetation/fuel conditions across burned area.
-- Add multi-week or multi-month drought lag features.
-- Add extreme wind and red-flag warning features.
-- Use leave-one-year-out cross-validation.
+- Add ignition cause when available.
+- Add WUI and population exposure features.
+- Add distance to roads, cities, and fire stations.
+- Add fuel continuity metrics from buffers around ignition points instead of only point samples.
+- Use fire perimeter data to sample fuels across burned area.
+- Add drought lag features across multiple prior weeks or months.
+- Use year-held-out cross-validation.
 - Tune Random Forest and XGBoost hyperparameters.
-- Calibrate predicted probabilities for high-severity triage.
+- Explore probability calibration for high-severity triage.
 - Build an interactive dashboard or map-based model explainer.
-
----
 
 ## How to Reproduce
 
@@ -472,16 +372,14 @@ pip install -r requirements.txt
 09_final_modeling.ipynb
 ```
 
-5. Review outputs.
+5. Review final outputs.
 
 ```text
 outputs/final_eda/
 outputs/final_modeling/
 ```
 
----
-
-## Git and Data Notes
+## Important Git Notes
 
 Large generated files should generally not be committed, especially raw rasters and cache files.
 
@@ -504,19 +402,17 @@ data/raw/landfire/**/*.tif
 outputs/
 ```
 
-Processed CSVs can be committed if they are small enough for GitHub. If they are large, regenerate them using the notebooks.
-
----
+If processed CSVs are small enough, they can be committed to make the project easier to review. If they are large, include instructions for regenerating them instead.
 
 ## Tech Stack
 
 - Python
 - pandas
-- NumPy
-- GeoPandas
+- numpy
+- geopandas
 - rasterio
-- pygridMET
-- py3DEP
+- pygridmet
+- py3dep
 - xarray
 - scikit-learn
 - XGBoost
@@ -525,8 +421,6 @@ Processed CSVs can be committed if they are small enough for GitHub. If they are
 - LANDFIRE Product Service
 - U.S. Drought Monitor GeoTIFFs
 
----
-
 ## Resume Summary
 
-Built a point-based wildfire severity prediction pipeline integrating CAL FIRE incident records, gridMET weather/fire-danger data, USGS 3DEP terrain, USDM drought intensity, and LANDFIRE vegetation/fuel rasters. Engineered pre-fire environmental features for 2,397 California wildfire incidents and evaluated multiclass severity classification and binary high-severity triage models using realistic time-based validation and imbalance-aware metrics.
+Built a point-based wildfire severity prediction pipeline integrating CAL FIRE incident records, gridMET weather/fire-danger data, USGS 3DEP terrain, USDM drought intensity, and LANDFIRE vegetation/fuel rasters. Engineered pre-fire environmental features for 2,397 California wildfire incidents and evaluated severity classification with realistic time-based validation and imbalance-aware metrics.
