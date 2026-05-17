@@ -45,21 +45,21 @@ Maximum:             1,032,648
 
 Because raw acreage is unstable and heavily affected by outliers, the project uses severity tiers as the primary modeling target:
 
-| Severity Tier |          Acreage Range |
-| ------------- | ---------------------: |
-| Small         |            < 100 acres |
-| Medium        |   100 to < 1,000 acres |
-| Large         | 1,000 to < 5,000 acres |
-| Extreme       |         >= 5,000 acres |
+| Severity Tier | Acreage Range |
+|---|---:|
+| Small | < 100 acres |
+| Medium | 100 to < 1,000 acres |
+| Large | 1,000 to < 5,000 acres |
+| Extreme | >= 5,000 acres |
 
 Final target distribution:
 
-| Class   | Count |
-| ------- | ----: |
-| Small   | 1,311 |
-| Medium  |   720 |
-| Large   |   200 |
-| Extreme |   166 |
+| Class | Count |
+|---|---:|
+| Small | 1,311 |
+| Medium | 720 |
+| Large | 200 |
+| Extreme | 166 |
 
 This class imbalance is why the project emphasizes balanced accuracy, macro F1, per-class recall, and Large/Extreme recall instead of raw accuracy.
 
@@ -274,11 +274,11 @@ The binary task provides a more practical risk-triage framing than exact four-cl
 At the default 0.50 threshold, the binary model is conservative. Lowering the high-severity threshold improves recall:
 
 | Threshold | High Recall | High Precision | Macro F1 |
-| --------: | ----------: | -------------: | -------: |
-|      0.35 |      0.5843 |         0.2088 |   0.5692 |
-|      0.40 |      0.4944 |         0.2431 |   0.6002 |
-|      0.45 |      0.3933 |         0.2536 |   0.6016 |
-|      0.50 |      0.3146 |         0.3333 |   0.6240 |
+|---:|---:|---:|---:|
+| 0.35 | 0.5843 | 0.2088 | 0.5692 |
+| 0.40 | 0.4944 | 0.2431 | 0.6002 |
+| 0.45 | 0.3933 | 0.2536 | 0.6016 |
+| 0.50 | 0.3146 | 0.3333 | 0.6240 |
 
 A 0.40 threshold may be more useful for triage because it catches nearly half of high-severity fires while maintaining better precision than more aggressive thresholds.
 
